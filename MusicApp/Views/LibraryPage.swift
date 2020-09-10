@@ -13,23 +13,33 @@ struct LibraryPage: View {
     var topInset: CGFloat = 50
     
     var body: some View {
-        ScrollView {
-            VStack (alignment: .leading, spacing:0) {
-                Spacer()
-                    .frame(height:topInset)
-                Text("Playlists")
-                    .underline()
-                    .foregroundColor(.white)
-                    .font(.system(size:28, weight: .bold))
-                    .padding()
-                CreatePlaylist()
-                ForEach(0..<12) { i in
-                    PlaylistPreview()
+        NavigationView {
+            ScrollView {
+                VStack (alignment: .leading, spacing:0) {
+                    Spacer()
+                        .frame(height:topInset)
+                    Text("Playlists")
+                        .underline()
+                        .foregroundColor(.white)
+                        .font(.system(size:28, weight: .bold))
+                        .padding()
+                    CreatePlaylist()
+                    ForEach(0..<12) { i in
+                        NavigationLink(
+                            destination: Playlist()
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                        ) {
+                            PlaylistPreview()
+                        }
+                    }
                 }
             }
+            .background(Color.black)
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
-        .background(Color.black)
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

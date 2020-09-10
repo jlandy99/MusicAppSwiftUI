@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct Playlist: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     // How much room for header (image, title, subtitle, etc.)
     var topInset: CGFloat = 400
     var titleImageSize: CGFloat = 200
@@ -36,7 +37,7 @@ struct Playlist: View {
                     .foregroundColor(.white)
                     .font(.system(size:20, weight: .bold))
                 Text("Subtitle")
-                    .foregroundColor(.init(red:0.8, green:0.8, blue:0.8))
+                    .foregroundColor(Color.init(red:0.8, green:0.8, blue:0.8))
                     .font(.system(size:16, weight: .medium))
                 Spacer()
             }
@@ -81,7 +82,11 @@ struct Playlist: View {
             // Left chevron and info
             VStack {
                 HStack {
-                    Image(systemName: "chevron.left").padding(.leading, 10)
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.left").padding(.leading, 10)
+                    }
                     Spacer()
                     Image(systemName: "ellipsis").padding(.trailing, 10)
                 }
