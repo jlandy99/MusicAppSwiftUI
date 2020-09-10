@@ -10,6 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
+    
+    init() {
+        UITabBar.appearance().barTintColor = .black
+        UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
+        UITabBar.appearance().clipsToBounds = true
+    }
  
     var body: some View {
         TabView(selection: $selection){

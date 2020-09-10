@@ -1,22 +1,21 @@
 //
-//  Song.swift
+//  CreatePlaylist.swift
 //  MusicApp
 //
-//  Created by John Landy on 9/9/20.
+//  Created by John Landy on 9/10/20.
 //  Copyright © 2020 John Landy. All rights reserved.
 //
 
 import SwiftUI
 
-struct Song: View {
+struct CreatePlaylist: View {
     var body: some View {
         HStack {
-            Image(systemName: "music.note")
+            Image(systemName: "plus.circle")
                 .padding(.trailing, 10)
-                .frame(width: 20, height: 20)
-            Text("Song Title")
+                .frame(width:50, height:50)
+            Text("Create New Playlist").font(.system(size:18))
             Spacer()
-            Image(systemName: "ellipsis")
         }
         .padding(18)
         .background(Color.black)
@@ -24,8 +23,8 @@ struct Song: View {
     }
 }
 
-struct Song_Previews: PreviewProvider {
+struct CreatePlaylist_Previews: PreviewProvider {
     static var previews: some View {
-        Song()
+        CreatePlaylist()
     }
 }

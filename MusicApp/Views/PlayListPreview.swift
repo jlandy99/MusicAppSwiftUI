@@ -1,5 +1,5 @@
 //
-//  Song.swift
+//  PlayListPreview.swift
 //  MusicApp
 //
 //  Created by John Landy on 9/9/20.
@@ -8,13 +8,16 @@
 
 import SwiftUI
 
-struct Song: View {
+struct PlaylistPreview: View {
     var body: some View {
         HStack {
             Image(systemName: "music.note")
                 .padding(.trailing, 10)
-                .frame(width: 20, height: 20)
-            Text("Song Title")
+                .frame(width:50, height:50)
+            VStack(alignment: .leading) {
+                Text("Playlist Name").font(.system(size:18))
+                Text("100 Songs").font(.system(size:16))
+            }
             Spacer()
             Image(systemName: "ellipsis")
         }
@@ -24,8 +27,8 @@ struct Song: View {
     }
 }
 
-struct Song_Previews: PreviewProvider {
+struct PlaylistPreview_Previews: PreviewProvider {
     static var previews: some View {
-        Song()
+        PlaylistPreview()
     }
 }
