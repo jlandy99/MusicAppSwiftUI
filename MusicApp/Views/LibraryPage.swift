@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LibraryPage: View {
     var body: some View {
-        Text("Hello, World!")
+        ContentItemViewer()
     }
 }
 
