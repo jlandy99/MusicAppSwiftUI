@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SignUpField: View {
     var field: String
-    @State private var result: String = ""
+    @State var result: String = ""
 
     var body: some View {
         HStack {

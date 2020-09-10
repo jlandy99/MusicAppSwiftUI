@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SignUp: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    // Save fields for checking later
+    let fields = ["First Name", "Last Name", "Email Address", "Phone Number", "Date of Birth", "Gender"]
 
     var body: some View {
         ScrollView {
@@ -26,17 +28,21 @@ struct SignUp: View {
                 .foregroundColor(.white)
                 .padding()
                 // Sign up form
-                SignUpField(field: "First Name")
-                SignUpField(field: "Last Name")
-                SignUpField(field: "Email Address")
-                SignUpField(field: "Phone Number")
-                Text("DOB")
-                Text("Gender")
+                ForEach(fields, id: \.self) { title in
+                    SignUpField(field: title)
+                }
             }.padding(.top, 30)
         }
         .background(Color.black)
         .foregroundColor(.white)
         .edgesIgnoringSafeArea(.all)
+    }
+    
+    // Validate sign up fields, and returns nil upon success. Otherwise, will return the error message
+    func validateFields() -> String? {
+        // Check that all fields are filled in
+        
+        return nil
     }
 }
 
