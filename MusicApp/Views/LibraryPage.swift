@@ -16,35 +16,30 @@ struct LibraryPage: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                ScrollView {
-                    VStack (alignment: .leading, spacing:0) {
-                        Spacer()
-                            .frame(height:topInset)
-                        Text("Playlists")
-                            .underline()
-                            .foregroundColor(.white)
-                            .font(.system(size:28, weight: .bold))
-                            .padding()
-                        CreatePlaylist()
-                        ForEach(0..<12) { i in
-                            NavigationLink(
-                                destination: Playlist()
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                            ) {
-                                PlaylistPreview()
-                            }
+            // List of playlsits
+            ScrollView {
+                VStack (alignment: .leading, spacing:0) {
+                    Spacer()
+                        .frame(height:topInset)
+                    Text("Playlists")
+                        .underline()
+                        .foregroundColor(.white)
+                        .font(.system(size:28, weight: .bold))
+                        .padding()
+                    CreatePlaylist()
+                    ForEach(0..<12) { i in
+                        NavigationLink(
+                            destination: Playlist()
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                        ) {
+                            PlaylistPreview()
                         }
                     }
                 }
-                .background(Color.black)
-                .edgesIgnoringSafeArea(.all)
-                VStack {
-                    LinearGradient(gradient: Gradient(colors: [themeColor, Color.clear]), startPoint: .top, endPoint: .bottom).frame(height:175)
-                    Spacer()
-                }.edgesIgnoringSafeArea(.all)
             }
+            .background(Color.black)
+            .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }

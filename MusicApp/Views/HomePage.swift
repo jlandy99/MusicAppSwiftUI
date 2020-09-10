@@ -10,7 +10,33 @@ import SwiftUI
 
 struct HomePage: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            VStack {
+                HStack {
+                    Text("Home")
+                        .underline()
+                        .foregroundColor(.white)
+                        .font(.system(size:28, weight: .bold))
+                        .padding()
+                    Spacer()
+                    // When profile button tapped, view basic profile information or log in/sign up
+                    NavigationLink(
+                        destination: SignUp()
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    ) {
+                        Image(systemName: "person.circle")
+                    }
+                }.padding(20)
+                Spacer()
+            }
+            .padding(.top, 25)
+            .background(Color.black)
+            .foregroundColor(.white)
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+        }
     }
 }
 
