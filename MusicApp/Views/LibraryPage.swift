@@ -11,32 +11,40 @@ import SwiftUI
 struct LibraryPage: View {
     // Offset variables
     var topInset: CGFloat = 50
+    // Theme color
+    var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack (alignment: .leading, spacing:0) {
-                    Spacer()
-                        .frame(height:topInset)
-                    Text("Playlists")
-                        .underline()
-                        .foregroundColor(.white)
-                        .font(.system(size:28, weight: .bold))
-                        .padding()
-                    CreatePlaylist()
-                    ForEach(0..<12) { i in
-                        NavigationLink(
-                            destination: Playlist()
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                        ) {
-                            PlaylistPreview()
+            ZStack {
+                ScrollView {
+                    VStack (alignment: .leading, spacing:0) {
+                        Spacer()
+                            .frame(height:topInset)
+                        Text("Playlists")
+                            .underline()
+                            .foregroundColor(.white)
+                            .font(.system(size:28, weight: .bold))
+                            .padding()
+                        CreatePlaylist()
+                        ForEach(0..<12) { i in
+                            NavigationLink(
+                                destination: Playlist()
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                            ) {
+                                PlaylistPreview()
+                            }
                         }
                     }
                 }
+                .background(Color.black)
+                .edgesIgnoringSafeArea(.all)
+                VStack {
+                    LinearGradient(gradient: Gradient(colors: [themeColor, Color.clear]), startPoint: .top, endPoint: .bottom).frame(height:175)
+                    Spacer()
+                }.edgesIgnoringSafeArea(.all)
             }
-            .background(Color.black)
-            .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }
