@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentItemViewer: View {
+struct Playlist: View {
     // How much room for header (image, title, subtitle, etc.)
     var topInset: CGFloat = 400
     var titleImageSize: CGFloat = 200
@@ -124,8 +124,8 @@ struct ContentItemViewer: View {
     }
 }
 
-struct ContentItemViewer_Previews: PreviewProvider {
+struct Playlist_Previews: PreviewProvider {
     static var previews: some View {
-        ContentItemViewer()
+        Playlist()
     }
 }

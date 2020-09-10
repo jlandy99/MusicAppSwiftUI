@@ -19,7 +19,7 @@
 		A1A55E562509B4A50042CAB8 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E552509B4A50042CAB8 /* HomePage.swift */; };
 		A1A55E582509B4C70042CAB8 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E572509B4C70042CAB8 /* SearchPage.swift */; };
 		A1A55E5A2509B4E20042CAB8 /* LibraryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E592509B4E20042CAB8 /* LibraryPage.swift */; };
-		A1A55E5C2509B6420042CAB8 /* ContentItemViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E5B2509B6420042CAB8 /* ContentItemViewer.swift */; };
+		A1A55E5C2509B6420042CAB8 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E5B2509B6420042CAB8 /* Playlist.swift */; };
 		A1EB78AF2509C45F00AE7607 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB78AE2509C45F00AE7607 /* Song.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		A1A55E552509B4A50042CAB8 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		A1A55E572509B4C70042CAB8 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
 		A1A55E592509B4E20042CAB8 /* LibraryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPage.swift; sourceTree = "<group>"; };
-		A1A55E5B2509B6420042CAB8 /* ContentItemViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItemViewer.swift; sourceTree = "<group>"; };
+		A1A55E5B2509B6420042CAB8 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		A1EB78AE2509C45F00AE7607 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,7 +152,7 @@
 		A1A55E5D2509B6750042CAB8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A1A55E5B2509B6420042CAB8 /* ContentItemViewer.swift */,
+				A1A55E5B2509B6420042CAB8 /* Playlist.swift */,
 				A1A55E292509B42B0042CAB8 /* ContentView.swift */,
 				A1A55E552509B4A50042CAB8 /* HomePage.swift */,
 				A1A55E592509B4E20042CAB8 /* LibraryPage.swift */,
@@ -300,7 +300,7 @@
 				A1A55E252509B42B0042CAB8 /* SceneDelegate.swift in Sources */,
 				A1A55E2A2509B42B0042CAB8 /* ContentView.swift in Sources */,
 				A1A55E5A2509B4E20042CAB8 /* LibraryPage.swift in Sources */,
-				A1A55E5C2509B6420042CAB8 /* ContentItemViewer.swift in Sources */,
+				A1A55E5C2509B6420042CAB8 /* Playlist.swift in Sources */,
 				A1A55E282509B42B0042CAB8 /* MusicApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
