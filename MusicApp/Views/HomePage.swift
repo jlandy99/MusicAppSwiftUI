@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct HomePage: View {
+    @ObservedObject var model: Model
     
     var body: some View {
         NavigationView {
@@ -24,7 +25,7 @@ struct HomePage: View {
                     Text(currentUser())
                     // When profile button tapped, view basic profile information or log in/sign up
                     NavigationLink(
-                        destination: SignUp()
+                        destination: UserInfo(model: model)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                     ) {
@@ -54,6 +55,6 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        HomePage(model: Model())
     }
 }

@@ -26,9 +26,11 @@ struct SignUp: View {
 
     var body: some View {
         ZStack {
+            // Background
+            Color.black.edgesIgnoringSafeArea(.all)
             // Text fields
             ScrollView {
-                VStack {
+                VStack(spacing: 0) {
                     // Sign up form
                     SignUpField(field: "Username", result: self.$username)
                     SignUpField(field: "Password", result: self.$password)

@@ -8,19 +8,31 @@
 
 import SwiftUI
 
+struct CustomTextField: View {
+    var placeholder: Text
+    @Binding var text: String
+    var editingChanged: (Bool)->() = { _ in }
+    var commit: ()->() = { }
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            if text.isEmpty { placeholder }
+            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+        }
+    }
+}
+
 struct SignUpField: View {
     var field: String
     @Binding var result: String
 
     var body: some View {
         HStack {
-            TextField("\(field)", text: $result)
+            CustomTextField(placeholder: Text("\(field)"), text: $result)
                 .foregroundColor(.white)
                 .background(Color.black)
                 .font(.system(size:16))
-                .frame(width: 200)
-                .padding()
-                .border(Color.white, width: 2).cornerRadius(5)
+                .frame(width: 240)
         }
         .padding(18)
         .background(Color.black)

@@ -20,6 +20,9 @@
 		A1A55E582509B4C70042CAB8 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E572509B4C70042CAB8 /* SearchPage.swift */; };
 		A1A55E5A2509B4E20042CAB8 /* LibraryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E592509B4E20042CAB8 /* LibraryPage.swift */; };
 		A1A55E5C2509B6420042CAB8 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A55E5B2509B6420042CAB8 /* Playlist.swift */; };
+		A1A72117250AFD4C0026D42B /* TabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A72116250AFD4C0026D42B /* TabbedView.swift */; };
+		A1A72119250AFE400026D42B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A72118250AFE400026D42B /* UserInfo.swift */; };
+		A1A7211B250AFFD60026D42B /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A7211A250AFFD60026D42B /* LogIn.swift */; };
 		A1C4D218A887EC8A25940238 /* Pods_MusicApp_MusicAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F981CBAE1929DFC5D7CE068 /* Pods_MusicApp_MusicAppUITests.framework */; };
 		A1EB78AF2509C45F00AE7607 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB78AE2509C45F00AE7607 /* Song.swift */; };
 		A1EB78B12509D80A00AE7607 /* PlayListPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB78B02509D80A00AE7607 /* PlayListPreview.swift */; };
@@ -75,6 +78,9 @@
 		A1A55E572509B4C70042CAB8 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
 		A1A55E592509B4E20042CAB8 /* LibraryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPage.swift; sourceTree = "<group>"; };
 		A1A55E5B2509B6420042CAB8 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		A1A72116250AFD4C0026D42B /* TabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedView.swift; sourceTree = "<group>"; };
+		A1A72118250AFE400026D42B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		A1A7211A250AFFD60026D42B /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		A1EB78AE2509C45F00AE7607 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		A1EB78B02509D80A00AE7607 /* PlayListPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListPreview.swift; sourceTree = "<group>"; };
 		A1EB78B22509DC8F00AE7607 /* CreatePlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylist.swift; sourceTree = "<group>"; };
@@ -207,12 +213,15 @@
 				A1EB78B22509DC8F00AE7607 /* CreatePlaylist.swift */,
 				A1A55E552509B4A50042CAB8 /* HomePage.swift */,
 				A1A55E592509B4E20042CAB8 /* LibraryPage.swift */,
+				A1A7211A250AFFD60026D42B /* LogIn.swift */,
 				A1EB78B8250A826600AE7607 /* SignUpField.swift */,
 				A1EB78B6250A821A00AE7607 /* SignUp.swift */,
 				A1A55E5B2509B6420042CAB8 /* Playlist.swift */,
 				A1EB78B02509D80A00AE7607 /* PlayListPreview.swift */,
 				A1A55E572509B4C70042CAB8 /* SearchPage.swift */,
 				A1EB78AE2509C45F00AE7607 /* Song.swift */,
+				A1A72116250AFD4C0026D42B /* TabbedView.swift */,
+				A1A72118250AFE400026D42B /* UserInfo.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -461,6 +470,7 @@
 				A1A55E562509B4A50042CAB8 /* HomePage.swift in Sources */,
 				A1EB78B12509D80A00AE7607 /* PlayListPreview.swift in Sources */,
 				A1A55E232509B42B0042CAB8 /* AppDelegate.swift in Sources */,
+				A1A72117250AFD4C0026D42B /* TabbedView.swift in Sources */,
 				A1A55E582509B4C70042CAB8 /* SearchPage.swift in Sources */,
 				A1A55E252509B42B0042CAB8 /* SceneDelegate.swift in Sources */,
 				A1EB78B7250A821A00AE7607 /* SignUp.swift in Sources */,
@@ -469,7 +479,9 @@
 				A1EB78B9250A826600AE7607 /* SignUpField.swift in Sources */,
 				A1EB78B32509DC8F00AE7607 /* CreatePlaylist.swift in Sources */,
 				A1A55E5C2509B6420042CAB8 /* Playlist.swift in Sources */,
+				A1A72119250AFE400026D42B /* UserInfo.swift in Sources */,
 				A1A55E282509B42B0042CAB8 /* MusicApp.xcdatamodeld in Sources */,
+				A1A7211B250AFFD60026D42B /* LogIn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

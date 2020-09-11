@@ -7,45 +7,28 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
+class Model: ObservableObject {
+    @Published var loggedIn = false
+}
 
 struct ContentView: View {
     @State private var selection = 0
+    @ObservedObject var model = Model()
     
     init() {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
         UITabBar.appearance().clipsToBounds = true
     }
- 
+    
+    @ViewBuilder
     var body: some View {
-        TabView(selection: $selection){
-            HomePage()
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                }
-                .tag(0)
-            SearchPage()
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "magnifyingglass")
-                        Text("Search")
-                    }
-                }
-                .tag(1)
-            LibraryPage()
-            .font(.title)
-            .tabItem {
-                VStack {
-                    Image(systemName: "line.horizontal.3.decrease.circle")
-                    Text("Library")
-                }
-            }
-            .tag(2)
+        if model.loggedIn {
+            TabbedView(model)
+        } else {
+            LogIn(model: model)
         }
     }
 }
