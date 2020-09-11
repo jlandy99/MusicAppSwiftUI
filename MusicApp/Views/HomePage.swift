@@ -7,8 +7,10 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct HomePage: View {
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -19,6 +21,7 @@ struct HomePage: View {
                         .font(.system(size:28, weight: .bold))
                         .padding()
                     Spacer()
+                    Text(currentUser())
                     // When profile button tapped, view basic profile information or log in/sign up
                     NavigationLink(
                         destination: SignUp()
@@ -36,6 +39,15 @@ struct HomePage: View {
             .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("")
             .navigationBarHidden(true)
+        }
+    }
+    
+    func currentUser() -> String {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            return "user"
+        } else {
+            return ""
         }
     }
 }

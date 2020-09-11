@@ -39,7 +39,7 @@ struct LibraryPage: View {
                 }
             }
             .background(Color.black)
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.top)
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }

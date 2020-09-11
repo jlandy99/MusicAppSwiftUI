@@ -10,14 +10,11 @@ import SwiftUI
 
 struct SignUpField: View {
     var field: String
-    @State var result: String = ""
+    @Binding var result: String
 
     var body: some View {
         HStack {
-            Text("\(field)")
-                .font(.system(size:14))
-            Spacer()
-            TextField("Enter \(field)", text: $result)
+            TextField("\(field)", text: $result)
                 .foregroundColor(.white)
                 .background(Color.black)
                 .font(.system(size:16))
@@ -33,6 +30,6 @@ struct SignUpField: View {
 
 struct SignUpField_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpField(field: "Tommy")
+        SignUpField(field: "Tommy", result: .constant(""))
     }
 }
