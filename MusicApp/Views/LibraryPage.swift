@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct LibraryPage: View {
     // Offset variables
-    var topInset: CGFloat = 50
+    let topInset: CGFloat = 50
     // Theme color
-    var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
+    let themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
     
     var body: some View {
         NavigationView {
@@ -42,6 +44,25 @@ struct LibraryPage: View {
             .edgesIgnoringSafeArea(.top)
             .navigationBarTitle("")
             .navigationBarHidden(true)
+        }
+    }
+    
+    // Function to find all of the users playlists
+    func getPlaylists(completion: @escaping(_ value: [String: Any]) -> ()) {
+        // Set up document read
+        let uid = Auth.auth().currentUser!.uid
+        let db = Firestore.firestore()
+        let docRef = db.collection("playlists").document(uid)
+        var data: [String: Any] = [:]
+        // Grab the user's playlist document
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Get data in form: { "Playlist name": array of endpoints }
+                data = document.data()!
+            } else {
+                print(error!.localizedDescription)
+            }
+            completion(data)
         }
     }
 }

@@ -8,6 +8,8 @@
 
 import SwiftUI
 import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 
 struct HomePage: View {
     @ObservedObject var model: Model
@@ -22,14 +24,17 @@ struct HomePage: View {
                         .font(.system(size:28, weight: .bold))
                         .padding()
                     Spacer()
-                    Text(currentUser())
                     // When profile button tapped, view basic profile information or log in/sign up
                     NavigationLink(
                         destination: UserInfo(model: model)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                     ) {
-                        Image(systemName: "person.circle")
+                        HStack {
+                            Text(currentUser())
+                                .font(.system(size:20))
+                            Image(systemName: "person.circle")
+                        }
                     }
                 }.padding(20)
                 Spacer()
@@ -46,7 +51,7 @@ struct HomePage: View {
     func currentUser() -> String {
         let user = Auth.auth().currentUser
         if let user = user {
-            return "user"
+            return user.displayName ?? ""
         } else {
             return ""
         }

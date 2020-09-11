@@ -11,6 +11,14 @@ import FirebaseAuth
 
 class Model: ObservableObject {
     @Published var loggedIn = false
+    
+    init() {
+        self.loggedIn = self.isLoggedIn()
+    }
+    
+    func isLoggedIn() -> Bool {
+        return Auth.auth().currentUser != nil
+    }
 }
 
 struct ContentView: View {

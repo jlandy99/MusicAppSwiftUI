@@ -50,7 +50,7 @@ struct LogIn: View {
                         Spacer().frame(height:20)
                         // Sign up button
                         NavigationLink(
-                            destination: SignUp()
+                            destination: SignUp(model: model)
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                         ) {
