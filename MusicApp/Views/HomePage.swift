@@ -13,39 +13,66 @@ import FirebaseFirestore
 
 struct HomePage: View {
     @ObservedObject var model: Model
+    // State var for menu bar
+    @State var showMenu = false
+    // Theme color
+    var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Text("Home")
-                        .underline()
-                        .foregroundColor(.white)
-                        .font(.system(size:28, weight: .bold))
-                        .padding()
-                    Spacer()
-                    // When profile button tapped, view basic profile information or log in/sign up
-                    NavigationLink(
-                        destination: UserInfo(model: model)
-                        .navigationBarTitle("")
-                        .navigationBarHidden(true)
-                    ) {
-                        HStack {
-                            Text(currentUser())
-                                .font(.system(size:20))
-                            Image(systemName: "person.circle")
-                        }
+        // Drag guesture for side menu
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showMenu = false
                     }
-                }.padding(20)
-                Spacer()
+                }
+                if $0.translation.width > 100 {
+                    withAnimation {
+                        self.showMenu = true
+                    }
+                }
             }
-            .padding(.top, 25)
-            .background(Color.black)
-            .foregroundColor(.white)
-            .edgesIgnoringSafeArea(.all)
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-        }
+        
+        return GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                // Main home view
+                VStack {
+                    Spacer().frame(height:30)
+                    HStack {
+                        // When profile button tapped, view basic profile information or log in/sign up
+                        Button(action: {
+                            withAnimation {
+                                self.showMenu.toggle()
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "person.circle")
+                                Text(self.currentUser())
+                                    .font(.system(size:20))
+                            }
+                        }
+                        Spacer()
+                        Image(systemName: "music.note")
+                        Spacer()
+                        Spacer()
+                    }.padding(20)
+                    Spacer()
+                }
+                .padding(.top, 25)
+                .background(Color.black)
+                .foregroundColor(.white)
+                .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                .disabled(self.showMenu ? true : false)
+                .edgesIgnoringSafeArea(.all)
+                // Logout view side panel
+                if self.showMenu {
+                    UserInfo(model: self.model)
+                        .frame(width: geometry.size.width / 2)
+                        .transition(.move(edge: .leading))
+                }
+            }
+        } .gesture(drag)
     }
     
     func currentUser() -> String {

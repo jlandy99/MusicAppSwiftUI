@@ -13,24 +13,52 @@ struct UserInfo: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     // Help with logging out
     @ObservedObject var model: Model
-
     // Theme color
     var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
+    // Menu color
+    var menuColor = Color.init(red: 0.08, green: 0.08, blue: 0.08)
 
     var body: some View {
-        VStack {
-            Text("Soon to contain user info!!")
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "person")
+                Text(self.currentUser())
+                    .font(.system(size:16))
+            }
+            .padding(.top, 80)
+            HStack {
+                Image(systemName: "gear")
+                Text("Settings")
+                    .font(.system(size:16))
+            }
+            .padding(.top, 30)
             Button(action: {
                 self.handleLogOut()
-                self.presentationMode.wrappedValue.dismiss()
+                self.model.loggedIn = false
             }) {
                 Text("Log Out")
                     .foregroundColor(.white)
-                    .frame(width:240, height:50)
-                    .background(themeColor)
+                    .frame(width:150, height:50)
+                    .background(self.themeColor)
                     .cornerRadius(25)
                     .font(.system(size:20, weight: .bold))
             }
+            .padding(.top, 30)
+            Spacer()
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(self.menuColor)
+        .foregroundColor(.white)
+        .edgesIgnoringSafeArea(.all)
+    }
+    
+    func currentUser() -> String {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            return user.displayName ?? ""
+        } else {
+            return ""
         }
     }
     
