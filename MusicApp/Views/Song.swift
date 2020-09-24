@@ -15,6 +15,7 @@ struct Song: View {
                 .padding(.trailing, 10)
                 .frame(width: 20, height: 20)
             Text("Song Title")
+                .font(.system(size:16))
             Spacer()
             Image(systemName: "ellipsis")
         }

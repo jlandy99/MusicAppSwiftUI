@@ -113,7 +113,7 @@ struct SignUp: View {
                     // Store user data as new document
                     let db = Firestore.firestore()
                     
-                    db.collection("users").addDocument(data: ["uid": result!.user.uid, "firstName": self.firstName, "lastName": self.lastName, "emailAddress": self.emailAddress, "phoneNumber": self.phoneNumber, "birthdate": self.birthdate,"gender": self.gender]) { (error) in
+                    db.collection("users").addDocument(data: ["uid": result!.user.uid, "firstName": self.firstName, "lastName": self.lastName, "emailAddress": self.emailAddress, "phoneNumber": self.phoneNumber, "birthdate": self.birthdate, "gender": self.gender, "friends": []]) { (error) in
                         if error != nil {
                             self.showError("Error saving user data")
                         }
