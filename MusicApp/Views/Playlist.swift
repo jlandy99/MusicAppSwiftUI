@@ -13,8 +13,6 @@ struct Playlist: View {
     // How much room for header (image, title, subtitle, etc.)
     var topInset: CGFloat = 400
     var titleImageSize: CGFloat = 200
-    // State variable (changes automatically) for play button location
-    @State var playButtonOffset: CGFloat = 335
     // Theme color
     var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
     
@@ -43,40 +41,34 @@ struct Playlist: View {
             }
             // Scrolling portion (songs, playlists, artists, etc.)
             ScrollView {
-                GeometryReader {geo -> AnyView? in
-                    let offset = geo.frame(in: .global).minY
-                    if (offset > -300) {
-                        self.playButtonOffset = offset
-                    } else {
-                        self.playButtonOffset = -300
-                    }
-                    return nil
-                }
-                VStack (spacing:0) {
+                // Play button
+                VStack {
+                    Spacer()
+                        .frame(height:335)
                     HStack {
-                        Spacer()
-                            .frame(height:topInset)
-                            .background(LinearGradient(gradient:
-                                Gradient(colors: [
-                                    Color.clear,
-                                    Color.clear,
-                                    Color.clear,
-                                    Color.black
-                                ]), startPoint: .top, endPoint: .bottom))
+                        Text("Play")
                     }
-                    VStack {
-                        ForEach(0..<40) { i in
-                            HStack {
-                                Song()
-                                Spacer()
-                            }
-                        }
-                    }.background(Color.black)
+                    .foregroundColor(.white)
+                    .frame(width:240, height:50)
+                    .background(themeColor)
+                    .cornerRadius(25)
+                    .font(.system(size:20, weight: .bold))
+                    .shadow(radius: 20)
+                    Spacer()
                 }
+                VStack {
+                    ForEach(0..<40) { i in
+                        HStack {
+                            Song()
+                            Spacer()
+                        }
+                    }
+                }.background(Color.black)
             }.background(Color.clear)
             // Top bar glow
             VStack {
                 LinearGradient(gradient: Gradient(colors: [themeColor, Color.clear]), startPoint: .top, endPoint: .bottom).frame(height:300)
+
                 Spacer()
             }.edgesIgnoringSafeArea(.all)
             // Left chevron and info
@@ -94,37 +86,6 @@ struct Playlist: View {
                 .padding()
                 Spacer()
             }
-            // Play button
-            VStack {
-                Spacer()
-                    .frame(height:playButtonOffset + 300)
-                HStack {
-                    if (playButtonOffset > -300) {
-                        Text("Play")
-                    } else {
-                        Image(systemName: "play.fill")
-                    }
-                }
-                .foregroundColor(.white)
-                .frame(width:getPlayButtonWidth(), height:50)
-                .background(themeColor)
-                .cornerRadius(25)
-                .font(.system(size:20, weight: .bold))
-                .shadow(radius: 20)
-                Spacer()
-            }
-        }
-    }
-    
-    // Allow play button to gradually condense as it gets closer to the top of the screen
-    func getPlayButtonWidth() -> CGFloat {
-        if (playButtonOffset > -150) {
-            return 240
-        } else if (playButtonOffset < -300) {
-            return 50
-        } else {
-            let width = 240 - (190 * (((-1 * playButtonOffset) - 150) / 150))
-            return width
         }
     }
 }
