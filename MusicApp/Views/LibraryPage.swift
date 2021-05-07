@@ -46,25 +46,6 @@ struct LibraryPage: View {
             .navigationBarHidden(true)
         }
     }
-    
-    // Function to find all of the users playlists
-    func getPlaylists(completion: @escaping(_ value: [String: Any]) -> ()) {
-        // Set up document read
-        let uid = Auth.auth().currentUser!.uid
-        let db = Firestore.firestore()
-        let docRef = db.collection("playlists").document(uid)
-        var data: [String: Any] = [:]
-        // Grab the user's playlist document
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                // Get data in form: { "Playlist name": array of endpoints }
-                data = document.data()!
-            } else {
-                print(error!.localizedDescription)
-            }
-            completion(data)
-        }
-    }
 }
 
 struct LibraryPage_Previews: PreviewProvider {
