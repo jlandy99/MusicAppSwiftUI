@@ -27,18 +27,12 @@ struct UserInfo: View {
                     .font(.system(size:16))
             }
             .padding(.top, 80)
-            Button(action: {
-                self.showFriends { (value) in
-                    print(value)
-                }
-            }) {
-                HStack {
-                    Image(systemName: "rectangle.stack.person.crop")
-                    Text("Friends")
-                        .font(.system(size:16))
-                }
-                .padding(.top, 30)
+            HStack {
+                Image(systemName: "rectangle.stack.person.crop")
+                Text("Friends")
+                    .font(.system(size:16))
             }
+            .padding(.top, 30)
             HStack {
                 Image(systemName: "gear")
                 Text("Settings")
@@ -83,26 +77,6 @@ struct UserInfo: View {
         }
         // Return to content view
         self.model.loggedIn = false
-    }
-    
-    func showFriends(completion: @escaping(_ value: [String]) -> ()) {
-        // Set up document read
-        let uid = Auth.auth().currentUser!.uid
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(uid)
-        var data: [String] = []
-        // Grab the user's playlist document
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                // Get data in form: { "Playlist name": array of endpoints }
-                let userData: [String: Any] = document.data()!
-                data = userData["friends"] as! [String]
-            } else {
-                print(error!.localizedDescription)
-            }
-            print(data)
-            completion(data)
-        }
     }
 }
 
