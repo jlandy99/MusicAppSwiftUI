@@ -18,7 +18,8 @@ struct LogIn: View {
     // Variable strings from text fields
     @State var emailAddress = ""
     @State var password = ""
-    
+    @State private var showAlert = false
+        
     var body: some View {
         NavigationView {
             ZStack {
@@ -76,6 +77,9 @@ struct LogIn: View {
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
+            .alert(isPresented: $showAlert) { () -> Alert in
+                Alert(title: Text("Error"), message: Text("The username or password was incorrect."), dismissButton: .default(Text("Try Again")))
+            }
         }
     }
 
@@ -83,10 +87,13 @@ struct LogIn: View {
         Auth.auth().signIn(withEmail: emailAddress, password: password, completion: { (authResult, error) in
             if let error = error {
                 self.showError(error.localizedDescription)
+                // Show an on-screen alert message
+                self.showAlert = true
+            } else {
+                // Return to content view if no errors
+                self.model.loggedIn = true
             }
         })
-        // Return to content view 
-        self.model.loggedIn = true
     }
 
     func showError(_ message:String) {

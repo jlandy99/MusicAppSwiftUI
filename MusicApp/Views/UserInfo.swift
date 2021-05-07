@@ -25,6 +25,7 @@ struct UserInfo: View {
                 Image(systemName: "person")
                 Text(self.currentUser())
                     .font(.system(size:16))
+                    .foregroundColor(Color.white)
             }
             .padding(.top, 80)
             HStack {
@@ -64,9 +65,8 @@ struct UserInfo: View {
         let user = Auth.auth().currentUser
         if let user = user {
             return user.displayName ?? ""
-        } else {
-            return ""
         }
+        return ""
     }
     
     func handleLogOut() {
