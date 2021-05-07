@@ -28,6 +28,8 @@ struct LibraryPage: View {
                         .foregroundColor(.white)
                         .font(.system(size:28, weight: .bold))
                         .padding()
+                    // Option for logging in or out of spotify (and other platforms soon)
+                    SpotifyAuth()
                     CreatePlaylist()
                     ForEach(0..<12) { i in
                         NavigationLink(
