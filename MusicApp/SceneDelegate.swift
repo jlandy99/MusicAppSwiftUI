@@ -20,15 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
     var playURI = ""
 
     lazy var configuration = SPTConfiguration(
-      clientID: SpotifyClientID,
-      redirectURL: SpotifyRedirectURL
+        clientID: SpotifyClientID,
+        redirectURL: SpotifyRedirectURL
     )
     
     lazy var appRemote: SPTAppRemote = {
-      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-      appRemote.connectionParameters.accessToken = self.accessToken
-      appRemote.delegate = self
-      return appRemote
+        let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
+        appRemote.connectionParameters.accessToken = self.accessToken
+        appRemote.delegate = self
+        return appRemote
     }()
     
     var accessToken = UserDefaults.standard.string(forKey: kAccessTokenKey) {
