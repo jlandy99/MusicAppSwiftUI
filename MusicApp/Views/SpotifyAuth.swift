@@ -13,15 +13,6 @@ struct SpotifyAuth: View {
     // Theme color
     var themeColor = Color.init(red: 110/255, green: 52/255, blue: 235/255)
     
-    // Spotify authorization
-    let SpotifyClientID = "[your spotify client id here]"
-    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
-
-    lazy var configuration = SPTConfiguration(
-      clientID: SpotifyClientID,
-      redirectURL: SpotifyRedirectURL
-    )
-    
     var body: some View {
         HStack {
             Spacer()
