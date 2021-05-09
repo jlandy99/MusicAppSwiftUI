@@ -9,34 +9,10 @@
 import UIKit
 import SwiftUI
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    // Spotify authorization
-    static private let kAccessTokenKey = "access-token-key"
-    let SpotifyClientID = "b8a6d1014ef5478ba0f8a1c4d5a72f22"
-    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
-    var playURI = ""
-
-    lazy var configuration = SPTConfiguration(
-        clientID: SpotifyClientID,
-        redirectURL: SpotifyRedirectURL
-    )
-    
-    lazy var appRemote: SPTAppRemote = {
-        let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-        appRemote.connectionParameters.accessToken = self.accessToken
-        appRemote.delegate = self
-        return appRemote
-    }()
-    
-    var accessToken = UserDefaults.standard.string(forKey: kAccessTokenKey) {
-        didSet {
-            let defaults = UserDefaults.standard
-            defaults.set(accessToken, forKey: SceneDelegate.kAccessTokenKey)
-        }
-    }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -58,22 +34,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
             window.makeKeyAndVisible()
         }
     }
-    
-    // Setting up access token and user authorizations for Spotify
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let url = URLContexts.first?.url else {
-            return
-        }
-
-        let parameters = appRemote.authorizationParameters(from: url);
-
-        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-            appRemote.connectionParameters.accessToken = access_token
-            self.accessToken = access_token
-        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            print("Error:", error_description)
-        }
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -85,14 +45,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        connect()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
-        playerViewController.appRemoteDisconnect()
-        appRemote.disconnect()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -108,38 +65,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-    // Protocol stubs for SPTAuthentication
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        self.appRemote = appRemote
-        playerViewController.appRemoteConnected()
-    }
-
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-        print("didFailConnectionAttemptWithError")
-        playerViewController.appRemoteDisconnect()
-    }
-
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-        print("didDisconnectWithError")
-        playerViewController.appRemoteDisconnect()
-    }
-    
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        debugPrint("Track name: %@", playerState.track.name)
-    }
-    
-    // Connecting to Spotify
-    func connect() {
-        self.appRemote.authorizeAndPlayURI(self.playURI)
-    }
-    
-    var playerViewController: PlayerViewController {
-        get {
-            let navController = self.window?.rootViewController?.children[0] as! UINavigationController
-            return navController.topViewController as! PlayerViewController
-        }
-    }
-
 }
 
